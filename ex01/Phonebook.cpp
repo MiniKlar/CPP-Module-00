@@ -6,7 +6,7 @@
 /*   By: lomont <lomont@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 00:37:58 by miniklar          #+#    #+#             */
-/*   Updated: 2025/09/16 12:23:32 by lomont           ###   ########.fr       */
+/*   Updated: 2025/09/22 21:16:04 by lomont           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void Phonebook::FillContact(int contact_index) {
 	for (int i = 0; i < 5; i++) {
 		print_input_message(i);
 		std::getline(std::cin, tmp);
+		check_if_valid_input(&tmp, i);
 		fill_contact_field(i, contact_index, tmp);
 		tmp.clear();
 	}
@@ -87,4 +88,13 @@ void Phonebook::fill_contact_field(int i, int contact_index, std::string str) {
 			this->array[contact_index].darkestSecret = str;
 			break;
 	}
+}
+
+void Phonebook::check_if_valid_input(std::string *str, int i) {
+	while (str->length() <= 0) {
+		std::cout << "Please enter a valid input" << std::endl;
+		print_input_message(i);
+		std::getline(std::cin, *str);
+	}
+	return ;
 }
