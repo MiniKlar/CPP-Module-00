@@ -6,7 +6,7 @@
 /*   By: lomont <lomont@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 00:37:58 by miniklar          #+#    #+#             */
-/*   Updated: 2025/09/23 12:01:09 by lomont           ###   ########.fr       */
+/*   Updated: 2025/09/23 20:47:49 by lomont           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 Contact::Contact( void ) {
 	std::cout << "Constructor contact called" << std::endl;
-	this->firstName = '\0';
-	this->lastName = '\0';
-	this->Nickname = '\0';
-	this->darkestSecret = '\0';
-	this->phoneNumber = '\0';
+	this->firstName.clear();
+	this->lastName.clear();
+	this->Nickname.clear();
+	this->darkestSecret.clear();
+	this->phoneNumber.clear();
 	return ;
 }
 
@@ -29,6 +29,7 @@ Contact::~Contact( void ) {
 
 Phonebook::Phonebook( void ) {
 	std::cout << "Constructor Phonebook called" << std::endl;
+	this->count = 0;
 	return ;
 }
 
@@ -37,7 +38,7 @@ Phonebook::~Phonebook( void ) {
 	return ;
 }
 
-void Phonebook::FillContact(int contact_index) {
+void Phonebook::FillContact( void ) {
 	std::string tmp;
 
 	std::cout << "\033[2J\033[1;1H"; // Efface l'écran
@@ -46,9 +47,10 @@ void Phonebook::FillContact(int contact_index) {
 		std::getline(std::cin, tmp);
 		check_if_valid_input(&tmp, i);
 		std::cout << "\033[2J\033[1;1H"; // Efface l'écran
-		fill_contact_field(i, contact_index, tmp);
+		fill_contact_field(i, this->count, tmp);
 		tmp.clear();
 	}
+	this->count++;
 	return ;
 }
 
@@ -73,6 +75,7 @@ void Phonebook::print_input_message(int i){
 }
 
 void Phonebook::fill_contact_field(int i, int contact_index, std::string str) {
+	contact_index = contact_index % 8;
 	switch (i) {
 		case 0:
 			this->array[contact_index].firstName = str;
@@ -153,4 +156,49 @@ bool Phonebook::check_secret(std::string str) {
 	if (len > 100)
 		return (false);
 	return (true);
+}
+
+int Phonebook::check_contacts(Contact *contact) {
+	int i = 0;
+	while (i < 8) {
+		if (contact[i].firstName.empty())
+			break;
+		i++;
+	}
+	return (i);
+}
+
+void Phonebook::display_contact(Contact *contact) {
+	int max_width = 10;
+	int index = this->check_contacts(contact);
+
+	std::cout << std::right;
+	std::cout << std::setw(10) << "Index";
+	std::cout << '|' << std::setw(10) << "First Name";
+	std::cout << '|' << std::setw(10) << "Last Name";
+	std::cout << '|' << std::setw(10) << "Nickname" << std::endl;
+
+	for (int i = 0; i < index; i++) {
+		std::string first_name = contact[i].firstName;
+		std::string last_name = contact[i].lastName;
+		std::string nickname = contact[i].Nickname;
+
+		if (first_name.length() > 10) {
+			first_name = first_name.substr(0, max_width - 1);
+			first_name = first_name + '.';
+		}
+		if (last_name.length() > 10) {
+			last_name = last_name.substr(0, max_width - 1);
+			last_name = last_name + '.';
+		}
+		if (nickname.length() > 10) {
+			nickname = nickname.substr(0, max_width - 1);
+			nickname = nickname + '.';
+		}
+			std::cout << std::setw(10) << i << '|';
+			std::cout << std::setw(10) << first_name << '|';
+			std::cout << std::setw(10) << last_name << '|';
+			std::cout << std::setw(10) << nickname << std::endl;
+	}
+	return ;
 }
