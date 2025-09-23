@@ -6,7 +6,7 @@
 /*   By: lomont <lomont@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 20:45:49 by lomont            #+#    #+#             */
-/*   Updated: 2025/09/22 21:09:30 by lomont           ###   ########.fr       */
+/*   Updated: 2025/09/23 02:36:00 by lomont           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ class Phonebook {
 		void print_input_message (int i);
 		void fill_contact_field(int i, int contact_index, std::string tmp);
 		void check_if_valid_input(std::string *str, int i);
+		bool check_phone_number(std::string str);
 };
 
 #endif
