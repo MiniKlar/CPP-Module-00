@@ -6,7 +6,7 @@
 /*   By: lomont <lomont@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 20:45:49 by lomont            #+#    #+#             */
-/*   Updated: 2025/09/23 02:36:00 by lomont           ###   ########.fr       */
+/*   Updated: 2025/09/23 11:49:40 by lomont           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define PHONEBOOK_H
 
 #include <iostream>
+#include <unordered_map>
+#include <string>
 
 class Contact {
 	public:
@@ -37,6 +39,9 @@ class Phonebook {
 		void fill_contact_field(int i, int contact_index, std::string tmp);
 		void check_if_valid_input(std::string *str, int i);
 		bool check_phone_number(std::string str);
+		bool check_name(std::string str);
+		bool check_nickname(std::string str);
+		bool check_secret(std::string str);
 };
 
 #endif

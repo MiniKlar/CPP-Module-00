@@ -6,7 +6,7 @@
 /*   By: lomont <lomont@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 00:37:58 by miniklar          #+#    #+#             */
-/*   Updated: 2025/09/23 02:53:15 by lomont           ###   ########.fr       */
+/*   Updated: 2025/09/23 12:01:09 by lomont           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,9 @@ void Phonebook::fill_contact_field(int i, int contact_index, std::string str) {
 
 void Phonebook::check_if_valid_input(std::string *str, int i) {
 	while (true) {
-		if (str->empty() || (i == 3 && !(this->check_phone_number(*str)))) {
-			std::cout << "Please enter a valid input" << std::endl;
+		if (str->empty() || (i == 3 && !(this->check_phone_number(*str))) || ((i == 0 || i == 1) && !this->check_name(*str)) || (i == 2 && !this->check_nickname(*str)) || (i == 4 && !this->check_secret(*str))) {
+			std::cout << "\033[2J\033[1;1H";
+			std::cout << "That was not a valid input" << std::endl;
 			print_input_message(i);
 			std::getline(std::cin, *str);
 		}
@@ -108,12 +109,48 @@ void Phonebook::check_if_valid_input(std::string *str, int i) {
 bool Phonebook::check_phone_number(std::string str) {
 	if (str[0] != '+' && !isdigit(static_cast<unsigned char>(str[0])))
 		return (false);
-	if (!(str.length() > 1))
+	int len = str.length();
+	if (str[0] == '+'){
+		if ((len < 4 || len > 16))
+			return (false);
+	}
+	else if (len < 3 || len > 15)
 		return (false);
 	for (int i = 1; str[i]; i++) {
 		if (!isdigit(static_cast<unsigned char>(str[i]))) {
 			return (false);
 		}
 	}
+	return (true);
+}
+
+bool Phonebook::check_name(std::string str) {
+	int len = str.length();
+	if (len < 2 || len > 50)
+		return (false);
+	for (int i = 0; str[i] ; i++) {
+		char c = str[i];
+		if (!isalpha(c))
+			return (false);
+	}
+	return (true);
+}
+
+bool Phonebook::check_nickname(std::string str) {
+	int len = str.length();
+	if (len < 2 || len > 50)
+		return (false);
+	for (int i = 0; str[i]; i++) {
+		char c = str[i];
+		if (!isalnum(c))
+			return (false);
+	}
+	return (true);
+}
+
+bool Phonebook::check_secret(std::string str) {
+	int len = str.length();
+	if (len > 100)
+		return (false);
 	return (true);
 }
