@@ -6,7 +6,7 @@
 /*   By: lomont <lomont@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 00:37:58 by miniklar          #+#    #+#             */
-/*   Updated: 2025/09/24 20:47:18 by lomont           ###   ########.fr       */
+/*   Updated: 2025/09/24 21:01:20 by lomont           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,10 @@ void Phonebook::check_if_valid_input(std::string& str, int i) {
 		}
 		else
 			break;
-		std::getline(std::cin, str);
+		if (!std::getline(std::cin, str)) {
+			clearTerminal();
+			return ;
+		}
 	}
 	return ;
 }
@@ -285,11 +288,11 @@ void Phonebook::display_contact(const Contact *contact) {
 			wrong_input = true;
 	}
 	printLogo();
-	std::cout << "First Name: " << this->array[index - 1].getFirstName()<< std::endl;
-	std::cout << "Last Name: " << this->array[index - 1].getLastName() << std::endl;
-	std::cout << "Nickname: " << this->array[index - 1].getNickname() << std::endl;
-	std::cout << "Phone Number: " << this->array[index - 1].getPhoneNumber() << std::endl;
-	std::cout << "Darkest secret: " << this->array[index - 1].getDarkestSecret() << std::endl << std::endl;
+	std::cout << "First Name: " << this->array[index_choosen - 1].getFirstName()<< std::endl;
+	std::cout << "Last Name: " << this->array[index_choosen - 1].getLastName() << std::endl;
+	std::cout << "Nickname: " << this->array[index_choosen - 1].getNickname() << std::endl;
+	std::cout << "Phone Number: " << this->array[index_choosen - 1].getPhoneNumber() << std::endl;
+	std::cout << "Darkest secret: " << this->array[index_choosen - 1].getDarkestSecret() << std::endl << std::endl;
 	waitForKeyPress();
 	clearTerminal();
 	return ;
