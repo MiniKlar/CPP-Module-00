@@ -6,7 +6,7 @@
 /*   By: lomont <lomont@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 21:05:29 by lomont            #+#    #+#             */
-/*   Updated: 2025/09/24 02:23:44 by lomont           ###   ########.fr       */
+/*   Updated: 2025/09/24 20:48:01 by lomont           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,20 @@ int main(void){
 			errorMessage.clear();
 		}
 		std::cout << "Please enter a command (ADD, SEARCH or EXIT) " << ": ";
-		std::getline(std::cin, command);
-		if (command.compare("ADD") == 0) {
+		if (!std::getline(std::cin, command)) {
+			clearTerminal();
+			break;
+		}
+		else if (command.empty()) {
+			clearTerminal();
+			continue;
+		}
+		else if (command.compare("ADD") == 0) {
 			book.FillContact();
 		}
 		else if (command.compare("SEARCH") == 0) {
-			if (book.count > 0)
-				book.display_contact(book.array);
+			if (book.getCount() > 0)
+				book.display_contact(book.getContacts());
 			else {
 				clearTerminal();
 				errorMessage = "You can't search into a Phonebook empty, please ADD a contact!";
