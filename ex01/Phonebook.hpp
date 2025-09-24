@@ -6,7 +6,7 @@
 /*   By: lomont <lomont@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 20:45:49 by lomont            #+#    #+#             */
-/*   Updated: 2025/09/23 20:35:35 by lomont           ###   ########.fr       */
+/*   Updated: 2025/09/24 03:42:57 by lomont           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include "UI.hpp"
 
 class Contact {
 	public:
@@ -45,6 +46,7 @@ class Phonebook {
 		bool check_secret(std::string str);
 		void display_contact(Contact *contact);
 		int check_contacts(Contact *contact);
+		void printContacts(Contact *contact, int maxWidth, int index);
 };
 
 #endif
