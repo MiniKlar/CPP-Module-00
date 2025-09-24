@@ -6,7 +6,7 @@
 /*   By: lomont <lomont@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 01:40:22 by lomont            #+#    #+#             */
-/*   Updated: 2025/09/24 02:18:02 by lomont           ###   ########.fr       */
+/*   Updated: 2025/09/24 20:12:04 by lomont           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,8 @@
 
 void printLogo( void );
 void clearTerminal( void );
+void print_input_message(const int i);
+void printErrorMessage(const char *errorMessage, int i);
+void waitForKeyPress( void );
 
 #endif
