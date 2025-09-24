@@ -6,7 +6,7 @@
 /*   By: lomont <lomont@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 01:40:32 by lomont            #+#    #+#             */
-/*   Updated: 2025/09/24 20:50:25 by lomont           ###   ########.fr       */
+/*   Updated: 2025/09/24 21:06:39 by lomont           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,4 @@ void waitForKeyPress( void ) {
 
 	std::cout << "Please press Enter to go back home..." << std::flush;
 	std::getline(std::cin, waitingKeyEnter);
-	//std::cin.get();
-	// std::cin.clear();
-	// std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
