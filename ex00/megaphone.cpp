@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miniklar <miniklar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomont <lomont@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 01:53:29 by miniklar          #+#    #+#             */
-/*   Updated: 2025/07/20 23:59:31 by miniklar         ###   ########.fr       */
+/*   Updated: 2025/09/26 18:49:38 by lomont           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
 
-void	ft_toUpper(char *s)
+void	ToUpper(char *s)
 {
 	int i = 0;
 
@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 
 		while (i < argc)
 		{
-			ft_toUpper(argv[i]);
+			ToUpper(argv[i]);
 			std::cout << argv[i];
 			i++;
 		}
