@@ -6,12 +6,17 @@
 /*   By: lomont <lomont@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 01:40:22 by lomont            #+#    #+#             */
-/*   Updated: 2025/09/24 20:12:04 by lomont           ###   ########.fr       */
+/*   Updated: 2025/09/26 18:53:15 by lomont           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
 #ifndef UI_HPP
 #define UI_HPP
+
+#include <iostream>
+#include <iomanip>
+#include <string>
 
 #define LOGO "\033[35m\n" \
 "+------------------------------------------------------------------------------------------------------------------------------------------------------------------+\n" \
@@ -34,10 +39,10 @@
 "+------------------------------------------------------------------------------------------------------------------------------------------------------------------+\n" \
 "\033[0m"
 
-void printLogo( void );
-void clearTerminal( void );
-void print_input_message(const int i);
-void printErrorMessage(const char *errorMessage, int i);
-void waitForKeyPress( void );
+void PrintLogo( void );
+void ClearTerminal( void );
+void PrintInputMessage(const int i);
+void PrintErrorMessage(const char *ErrorMessage, int i);
+void WaitForKeyPress( void );
 
 #endif

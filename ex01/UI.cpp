@@ -6,21 +6,21 @@
 /*   By: lomont <lomont@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 01:40:32 by lomont            #+#    #+#             */
-/*   Updated: 2025/09/24 21:06:39 by lomont           ###   ########.fr       */
+/*   Updated: 2025/09/26 18:47:25 by lomont           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Phonebook.hpp"
 
-void printLogo( void ) {
+void PrintLogo( void ) {
 	std::cout << LOGO << std::endl;
 }
 
-void clearTerminal( void ) {
+void ClearTerminal( void ) {
 	std::cout << "\033[2J\033[1;1H";
 }
 
-void print_input_message(const int i){
+void PrintInputMessage(const int i){
 	switch (i) {
 		case (0) :
 			std::cout << "Please enter your First Name: ";
@@ -40,14 +40,14 @@ void print_input_message(const int i){
 	}
 }
 
-void printErrorMessage(const char *errorMessage, int i) {
-	clearTerminal();
-	printLogo();
-	std::cout << errorMessage << std::endl << std::endl;
-	print_input_message(i);
+void PrintErrorMessage(const char *ErrorMessage, int i) {
+	ClearTerminal();
+	PrintLogo();
+	std::cout << ErrorMessage << std::endl << std::endl;
+	PrintInputMessage(i);
 }
 
-void waitForKeyPress( void ) {
+void WaitForKeyPress( void ) {
 	std::string waitingKeyEnter;
 
 	std::cout << "Please press Enter to go back home..." << std::flush;
