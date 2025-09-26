@@ -6,10 +6,11 @@
 /*   By: lomont <lomont@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 20:45:49 by lomont            #+#    #+#             */
-/*   Updated: 2025/09/24 20:25:25 by lomont           ###   ########.fr       */
+/*   Updated: 2025/09/26 18:50:43 by lomont           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
 #ifndef PHONEBOOK_H
 # define PHONEBOOK_H
 
@@ -31,18 +32,18 @@ class Contact {
 
 		// Getters
 
-		std::string getFirstName() const;
-		std::string getLastName() const;
-		std::string getNickname() const;
-		std::string getPhoneNumber() const;
-		std::string getDarkestSecret() const;
+		std::string GetFirstName() const;
+		std::string GetLastName() const;
+		std::string GetNickname() const;
+		std::string GetPhoneNumber() const;
+		std::string GetDarkestSecret() const;
 		// Setters
 
-		void setFirstName(const std::string& name);
-		void setLastName(const std::string& name);
-		void setNickname(const std::string& nickname);
-		void setPhoneNumber(const std::string& phone);
-		void setDarkestSecret(const std::string& secret);
+		void SetFirstName(const std::string& name);
+		void SetLastName(const std::string& name);
+		void SetNickname(const std::string& nickname);
+		void SetPhoneNumber(const std::string& phone);
+		void SetDarkestSecret(const std::string& secret);
 };
 
 class Phonebook {
@@ -50,22 +51,22 @@ class Phonebook {
 		int count;
 		Contact array[8];
 
-		void fill_contact_field(const int i, int contact_index, const std::string& tmp);
-		void check_if_valid_input(std::string& str, int i);
-		bool check_phone_number(const std::string& str);
-		bool check_name(const std::string& str);
-		bool check_nickname(const std::string& str);
-		bool check_secret(const std::string& str);
-		int getContactsIndex(const Contact *contact);
-		void printContacts(const Contact *contact, int maxWidth, int index);
+		void FillContactField(const int i, int contact_index, const std::string& tmp);
+		void CheckIfValidInput(std::string& str, int i);
+		bool CheckPhoneNumber(const std::string& str);
+		bool CheckName(const std::string& str);
+		bool CheckNickname(const std::string& str);
+		bool CheckSecret(const std::string& str);
+		int GetContactsIndex(const Contact *contact);
+		void PrintContacts(const Contact *contact, int maxWidth, int index);
 
 	public:
 		Phonebook( void );
 		~Phonebook( void );
-		int getCount() const;
-		const Contact *getContacts() const;
+		int GetCount() const;
+		const Contact *GetContacts() const;
 		void FillContact( void );
-		void display_contact(const Contact *contact);
+		void DisplayContact(const Contact *contact);
 };
 
 #endif
