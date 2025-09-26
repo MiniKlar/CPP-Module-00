@@ -6,7 +6,7 @@
 /*   By: lomont <lomont@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 00:37:58 by miniklar          #+#    #+#             */
-/*   Updated: 2025/09/24 21:01:20 by lomont           ###   ########.fr       */
+/*   Updated: 2025/09/26 18:47:25 by lomont           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,70 +21,70 @@ Contact::~Contact( void ) {
 }
 
 Phonebook::Phonebook( void ) : count(0) {
-	clearTerminal();
+	ClearTerminal();
 	return ;
 }
 
 Phonebook::~Phonebook( void ) {
-	clearTerminal();
+	ClearTerminal();
 	std::cout << "Phonebook closed!" << std::endl;
 	return ;
 }
 
 //Setters
 
-void Contact::setFirstName(const std::string& name) {
+void Contact::SetFirstName(const std::string& name) {
 	this->firstName = name;
 	return ;
 }
 
-void Contact::setLastName(const std::string& name) {
+void Contact::SetLastName(const std::string& name) {
 	this->lastName = name;
 	return ;
 }
 
-void Contact::setNickname(const std::string& nickname) {
+void Contact::SetNickname(const std::string& nickname) {
 	this->Nickname = nickname;
 	return ;
 }
 
-void Contact::setPhoneNumber(const std::string& phone) {
+void Contact::SetPhoneNumber(const std::string& phone) {
 	this->phoneNumber = phone;
 	return ;
 }
 
-void Contact::setDarkestSecret(const std::string& secret) {
+void Contact::SetDarkestSecret(const std::string& secret) {
 	this->darkestSecret = secret;
 	return ;
 }
 
 // Getters
 
-std::string Contact::getFirstName() const {
+std::string Contact::GetFirstName() const {
 	return (this->firstName);
 }
 
-std::string Contact::getLastName() const {
+std::string Contact::GetLastName() const {
 	return (this->lastName);
 }
 
-std::string Contact::getNickname() const {
+std::string Contact::GetNickname() const {
 	return (this->Nickname);
 }
 
-std::string Contact::getPhoneNumber() const {
+std::string Contact::GetPhoneNumber() const {
 	return (this->phoneNumber);
 }
 
-std::string Contact::getDarkestSecret() const {
+std::string Contact::GetDarkestSecret() const {
 	return (this->darkestSecret);
 }
 
-int Phonebook::getCount() const {
+int Phonebook::GetCount() const {
 	return (this->count);
 }
 
-const Contact *Phonebook::getContacts() const {
+const Contact *Phonebook::GetContacts() const {
 	return (this->array);
 }
 
@@ -93,68 +93,68 @@ const Contact *Phonebook::getContacts() const {
 void Phonebook::FillContact( void ) {
 	std::string tmp;
 
-	clearTerminal();
+	ClearTerminal();
 	for (int i = 0; i < 5; i++) {
-		printLogo();
-		print_input_message(i);
+		PrintLogo();
+		PrintInputMessage(i);
 		std::getline(std::cin, tmp);
-		check_if_valid_input(tmp, i);
-		clearTerminal();
-		fill_contact_field(i, this->count, tmp);
+		CheckIfValidInput(tmp, i);
+		ClearTerminal();
+		FillContactField(i, this->count, tmp);
 		tmp.clear();
 	}
 	this->count++;
 	return ;
 }
 
-void Phonebook::fill_contact_field(int i, int contact_index, const std::string& str) {
+void Phonebook::FillContactField(int i, int contact_index, const std::string& str) {
 	contact_index = contact_index % 8;
 	switch (i) {
 		case 0:
-			this->array[contact_index].setFirstName(str);
+			this->array[contact_index].SetFirstName(str);
 			break;
 		case 1:
-			this->array[contact_index].setLastName(str);
+			this->array[contact_index].SetLastName(str);
 			break;
 		case 2:
-			this->array[contact_index].setNickname(str);
+			this->array[contact_index].SetNickname(str);
 			break;
 		case 3:
-			this->array[contact_index].setPhoneNumber(str);
+			this->array[contact_index].SetPhoneNumber(str);
 			break;
 		case 4:
-			this->array[contact_index].setDarkestSecret(str);
+			this->array[contact_index].SetDarkestSecret(str);
 			break;
 	}
 }
 
-void Phonebook::check_if_valid_input(std::string& str, int i) {
+void Phonebook::CheckIfValidInput(std::string& str, int i) {
 	while (true) {
 		if (str.empty())
-			printErrorMessage("Empty input, please re-enter your input", i);
-		else if ((i == 0 || i == 1) && !this->check_name(str)) {
-			printErrorMessage("Wrong input, please choose a name between 2 and 50 characters without numbers & special characters!", i);
+			PrintErrorMessage("Empty input, please re-enter your input", i);
+		else if ((i == 0 || i == 1) && !this->CheckName(str)) {
+			PrintErrorMessage("Wrong input, please choose a name between 2 and 50 characters without numbers & special characters!", i);
 		}
-		else if (i == 3 && !(this->check_phone_number(str))) {
-			printErrorMessage("Wrong input, please choose a phone number at least 3 numbers long and 15 numbers maximum without indicator!", i);
+		else if (i == 3 && !(this->CheckPhoneNumber(str))) {
+			PrintErrorMessage("Wrong input, please choose a phone number at least 3 numbers long and 15 numbers maximum without indicator!", i);
 		}
-		else if (i == 2 && !this->check_nickname(str)) {
-			printErrorMessage("Wrong input, please choose a nickname between 2 and 50 characters withotu special characters!", i);
+		else if (i == 2 && !this->CheckNickname(str)) {
+			PrintErrorMessage("Wrong input, please choose a nickname between 2 and 50 characters withotu special characters!", i);
 		}
-		else if (i == 4 && !this->check_secret(str)) {
-			printErrorMessage("Wrong input, your darkest secret should not be >100 characters long!", i);
+		else if (i == 4 && !this->CheckSecret(str)) {
+			PrintErrorMessage("Wrong input, your darkest secret should not be >100 characters long!", i);
 		}
 		else
 			break;
 		if (!std::getline(std::cin, str)) {
-			clearTerminal();
+			ClearTerminal();
 			return ;
 		}
 	}
 	return ;
 }
 
-bool Phonebook::check_phone_number(const std::string& str) {
+bool Phonebook::CheckPhoneNumber(const std::string& str) {
 	if (str[0] != '+' && !isdigit(static_cast<unsigned char>(str[0])))
 		return (false);
 	int len = str.length();
@@ -172,7 +172,7 @@ bool Phonebook::check_phone_number(const std::string& str) {
 	return (true);
 }
 
-bool Phonebook::check_name(const std::string& str) {
+bool Phonebook::CheckName(const std::string& str) {
 	int len = str.length();
 	if (len < 2 || len > 50)
 		return (false);
@@ -184,7 +184,7 @@ bool Phonebook::check_name(const std::string& str) {
 	return (true);
 }
 
-bool Phonebook::check_nickname(const std::string& str) {
+bool Phonebook::CheckNickname(const std::string& str) {
 	int len = str.length();
 	if (len < 2 || len > 50)
 		return (false);
@@ -196,26 +196,26 @@ bool Phonebook::check_nickname(const std::string& str) {
 	return (true);
 }
 
-bool Phonebook::check_secret(const std::string& str) {
+bool Phonebook::CheckSecret(const std::string& str) {
 	int len = str.length();
 	if (len > 100)
 		return (false);
 	return (true);
 }
 
-int Phonebook::getContactsIndex(const Contact *contact) {
+int Phonebook::GetContactsIndex(const Contact *contact) {
 	int i = 0;
 	while (i < 8) {
-		if (contact[i].getFirstName().empty())
+		if (contact[i].GetFirstName().empty())
 			break;
 		i++;
 	}
 	return (i);
 }
 
-void Phonebook::printContacts(const Contact *contact, int maxWidth, int index) {
-	clearTerminal();
-	printLogo();
+void Phonebook::PrintContacts(const Contact *contact, int maxWidth, int index) {
+	ClearTerminal();
+	PrintLogo();
 	std::cout << std::right;
 	std::cout << std::setw(10) << "Index";
 	std::cout << '|' << std::setw(10) << "First Name";
@@ -223,9 +223,9 @@ void Phonebook::printContacts(const Contact *contact, int maxWidth, int index) {
 	std::cout << '|' << std::setw(10) << "Nickname" << std::endl;
 
 	for (int i = 0; i < index; i++) {
-		std::string first_name = contact[i].getFirstName();
-		std::string last_name = contact[i].getLastName();
-		std::string nickname = contact[i].getNickname();
+		std::string first_name = contact[i].GetFirstName();
+		std::string last_name = contact[i].GetLastName();
+		std::string nickname = contact[i].GetNickname();
 
 		if (first_name.length() > 10) {
 			first_name = first_name.substr(0, maxWidth - 1);
@@ -246,16 +246,16 @@ void Phonebook::printContacts(const Contact *contact, int maxWidth, int index) {
 	}
 }
 
-void Phonebook::display_contact(const Contact *contact) {
+void Phonebook::DisplayContact(const Contact *contact) {
 	int max_width = 10;
-	int index = this->getContactsIndex(contact);
+	int index = this->GetContactsIndex(contact);
 	bool wrong_input = false;
 	int index_choosen = 0;
 	std::string str = "";
 
 	while (1)
 	{
-		printContacts(contact, max_width, index);
+		PrintContacts(contact, max_width, index);
 		if (wrong_input)
 		{
 			std::cout << std::endl << "Wrong input!" << std::endl;
@@ -263,7 +263,7 @@ void Phonebook::display_contact(const Contact *contact) {
 		}
 		std::cout << std::endl << "Please choose an existing index to display the contact information: ";
 		if (!std::getline(std::cin, str)){
-			clearTerminal();
+			ClearTerminal();
 			return;
 		}
 		else if (str.empty()) {
@@ -281,19 +281,19 @@ void Phonebook::display_contact(const Contact *contact) {
 			continue;
 		index_choosen = std::stoi(str);
 		if (index_choosen <= index && index_choosen != 0) {
-			clearTerminal();
+			ClearTerminal();
 			break;
 		}
 		else
 			wrong_input = true;
 	}
-	printLogo();
-	std::cout << "First Name: " << this->array[index_choosen - 1].getFirstName()<< std::endl;
-	std::cout << "Last Name: " << this->array[index_choosen - 1].getLastName() << std::endl;
-	std::cout << "Nickname: " << this->array[index_choosen - 1].getNickname() << std::endl;
-	std::cout << "Phone Number: " << this->array[index_choosen - 1].getPhoneNumber() << std::endl;
-	std::cout << "Darkest secret: " << this->array[index_choosen - 1].getDarkestSecret() << std::endl << std::endl;
-	waitForKeyPress();
-	clearTerminal();
+	PrintLogo();
+	std::cout << "First Name: " << this->array[index_choosen - 1].GetFirstName()<< std::endl;
+	std::cout << "Last Name: " << this->array[index_choosen - 1].GetLastName() << std::endl;
+	std::cout << "Nickname: " << this->array[index_choosen - 1].GetNickname() << std::endl;
+	std::cout << "Phone Number: " << this->array[index_choosen - 1].GetPhoneNumber() << std::endl;
+	std::cout << "Darkest secret: " << this->array[index_choosen - 1].GetDarkestSecret() << std::endl << std::endl;
+	WaitForKeyPress();
+	ClearTerminal();
 	return ;
 }
